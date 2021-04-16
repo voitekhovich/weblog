@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Технологии{% endblock %}
+
+{% block content %}
+
+    <style>
+        .leftimg {
+            float:left;
+            width: 250px;
+            margin: 7px 20px 7px 0px;
+        }
+    </style>
+
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-3 mb-3 mt-4">
+                <div class="card">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="h3">Технологии</div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="h6 text-muted">Django</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="card-body">
+                    <div class="card-text">
+                        <p>
+                            Добро пожаловать на мой сайт! Данный сайт создавался как обучающий проект при прохождении онлайн курса по <a href="https://www.python.org/">Python</a> от <a href="https://praktikum.yandex.ru/">Яндекс Практикум</a>.
+                        </p>
+                        <p>
+                            {% load static %}
+                            <img src="{% static 'emmy.jpg' %}" alt="Любимая кошка Эмми"  class="leftimg">
+                            Сайт разработан на высокоуровневом веб-фреймворке <a href="https://www.djangoproject.com/">Django</a> и представляет из себя блог. Помощниками в разработке этого сайта была не только теория и практика курса, но так же любимый питомец с наглой но милой мордочкой по кличке "Эмми". Кстати подписывайтесь на её <a href="https://www.instagram.com/emmy.vredinka/">Instagram</a> :)
+                        </p>
+                        <p>
+                            Любой желающий может зарегистрировться и начать писать свой блог, или просматривать записи других.
+                        </p>
+                        <p>
+                            При создании сайта, пришлось не только заварить кастрюлю чая и включить фоновую музыку, но так же с головой погрузится в такие полезные и интересные вещи, как:
+                        <ul>
+                            <li><b>Git</b>. Что он из себя представляет и зачем писать коммиты. Как не перепутать pull и push</li>
+                            <li><b>Виртуальное окружение</b>. Что это и с чем его есть. Польза от изоляции проекта</li>
+                            <li><b>Django</b> <s>освобождённый</s>. Как напрячь мозговые извилины и не запутаться во всёй этой вакханалии: MODELS, FORMS, VIEWS, URLS...</li>
+                            <li><b>Тесты</b>. Почему мы их пишем, и кому они нужны - главное ведь ровный код.</li>
+                        </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

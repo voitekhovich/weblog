@@ -1,0 +1,33 @@
+{% extends "base.html" %} 
+{% block title %}Профиль пользователя{% endblock %}
+
+{% block content %}
+
+    <main role="main" class="container px-0">
+
+        <div class="row mt-3">
+            
+            <div class="col">
+
+                {% load cache %}
+                {% cache 20 index_page page %}
+                    {% for post in page %}
+                        {% include "include/post_item.html" with post=post %}
+                    {% endfor %}
+                {% endcache %}
+
+                <div class="card mb-4 mt-2 pt-3 shadow-sm" >
+                    {% include "include/paginator.html" with items=page %}
+                </div>
+
+            </div>
+
+            <div class="col" style="max-width: 250px;">
+                {% include 'include/card.html' %}
+            </div>
+
+        </div>
+
+    </main>
+
+{% endblock %}

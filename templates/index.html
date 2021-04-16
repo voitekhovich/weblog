@@ -1,0 +1,37 @@
+{% extends "base.html" %} 
+{% block title %} Последние обновления {% endblock %}
+
+{% block content %}
+
+    <main role="main" class="container px-0">
+
+        <div class="row mt-4">
+            
+            <div class="col">
+
+                <!--div class="card mb-2 px-3 py-2 shadow-sm">
+                    <h3>Последние обновления на сайте</h3>
+                </div-->
+                
+                {% include "include/menu.html" with index=True %}
+
+                {% load cache %}
+                {% cache 20 index_page page %}
+                    {% for post in page %}
+                        {% include "include/post_item.html" with post=post %}
+                    {% endfor %}
+                {% endcache %}
+
+                {% include "include/paginator.html" with items=page %}
+
+            </div>
+
+            <div class="col" style="max-width: 250px;">
+                {% include 'include/user_card.html' %}
+            </div>
+
+        </div>
+
+    </main>
+
+{% endblock %}
