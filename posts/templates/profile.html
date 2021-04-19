@@ -9,12 +9,9 @@
             
             <div class="col">
 
-                {% load cache %}
-                {% cache 20 index_page page %}
                     {% for post in page %}
                         {% include "include/post_item.html" with post=post %}
                     {% endfor %}
-                {% endcache %}
 
                 <div class="card mb-4 mt-2 pt-3 shadow-sm" >
                     {% include "include/paginator.html" with items=page %}
@@ -23,7 +20,15 @@
             </div>
 
             <div class="col" style="max-width: 250px;">
-                {% include 'include/card.html' %}
+                <div class="row mb-4">
+                    {% if user.is_authenticated %}
+                        {% include 'include/card.html' %}
+                    {% endif %}
+                </div>
+
+                <div class="row px-0">
+                        {% include 'include/groups_card.html' %}
+                </div>
             </div>
 
         </div>

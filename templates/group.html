@@ -1,17 +1,41 @@
-{% extends "base.html" %}
-{% block title %}Записи сообщества {{ group }} {% endblock %}
+{% extends "base.html" %} 
+{% block title %}Записи сообщества {{ group }}{% endblock %}
 
 {% block content %}
 
-    <div class="container">
-        <h3>{{ group }}</h3>
-        <p>{{ group.description }}</p>
-          
-        {% for post in page %}
-            {% include "include/post_item.html" with post=post %}
-        {% endfor %}
-    </div>
+    <main role="main" class="container px-0">
 
-    {% include "include/paginator.html" with items=page %}
+        <div class="row mt-4">
+            
+            <div class="col">
+
+                <div class="card mb-2 px-3 py-2 shadow-sm">
+                    <h3>{{ group }}</h3>
+                    <p>{{ group.description }}</p>
+                </div>
+
+                    {% for post in page %}
+                        {% include "include/post_item.html" with post=post %}
+                    {% endfor %}
+
+                {% include "include/paginator.html" with items=page %}
+
+            </div>
+
+            <div class="col" style="max-width: 250px;">
+                <div class="row mb-4">
+                    {% if user.is_authenticated %}
+                        {% include 'include/user_card.html' %}
+                    {% endif %}
+                </div>
+
+                <div class="row px-0">
+                        {% include 'include/groups_card.html' %}
+                </div>
+            </div>
+
+        </div>
+
+    </main>
 
 {% endblock %}

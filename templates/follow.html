@@ -14,20 +14,24 @@
                 </div-->
                 
                 {% include "include/menu.html" with follow=True %}
-
-                {% load cache %}
-                {% cache 20 index_page page %}
                     {% for post in page %}
                         {% include "include/post_item.html" with post=post %}
                     {% endfor %}
-                {% endcache %}
 
                 {% include "include/paginator.html" with items=page %}
 
             </div>
 
             <div class="col" style="max-width: 250px;">
-                {% include 'include/user_card.html' %}
+                <div class="row mb-4">
+                    {% if user.is_authenticated %}
+                        {% include 'include/user_card.html' %}
+                    {% endif %}
+                </div>
+
+                <div class="row px-0">
+                        {% include 'include/groups_card.html' %}
+                </div>
             </div>
 
         </div>

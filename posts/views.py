@@ -16,8 +16,9 @@ def index(request):
     paginator = Paginator(posts, set.PAGE_ITEMS)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
+    groups = Group.objects.all()
     return render(
-        request, 'index.html', {'page': page})
+        request, 'index.html', {'page': page, 'groups': groups})
 
 
 def group_posts(request, slug):
@@ -26,9 +27,10 @@ def group_posts(request, slug):
     paginator = Paginator(posts, set.PAGE_ITEMS)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
+    groups = Group.objects.all()
     return render(
         request, 'group.html',
-        {'group': group, 'page': page})
+        {'group': group, 'page': page, 'groups': groups})
 
 
 @login_required
@@ -55,11 +57,14 @@ def profile(request, username):
     paginator = Paginator(posts, set.PAGE_ITEMS)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
+    groups = Group.objects.all()
     return render(request, 'profile.html', {
         'author': author,
         'page': page,
         # 'posts_count': posts_count,
-        'following': following, })
+        'following': following, 
+        'groups': groups,
+    })
 
 
 def post_view(request, username, post_id):
@@ -67,12 +72,14 @@ def post_view(request, username, post_id):
     posts_count = post.author.posts.count()
     comments = post.comments.all()
     form = CommentForm()
+    groups = Group.objects.all()
     return render(request, 'post.html', {
         'form': form,
         'post': post,
         'posts_count': posts_count,
         'author': post.author,
         'comments': comments,
+        'groups': groups,
     })
 
 
@@ -122,8 +129,13 @@ def follow_index(request):
     paginator = Paginator(posts, set.PAGE_ITEMS)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
+    groups = Group.objects.all()
     return render(
-        request, 'follow.html', {'page': page, 'paginator': paginator})
+        request, 'follow.html', {
+            'page': page,
+            'paginator': paginator,
+            'groups': groups,
+    })
 
 
 @login_required

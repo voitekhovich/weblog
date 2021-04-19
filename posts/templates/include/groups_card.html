@@ -1,0 +1,12 @@
+<div class="card " style="width: 235px;">
+    <div class="card-body">
+        <div class="h4">
+            <p>Группы</p>
+        </div>
+        {% for group in groups %}
+            <h5 class="card-text">
+                <a class="card-link muted" href="{% url 'group' group.slug %}">#{{ group.slug }}</a>
+            </h5>
+        {% endfor %}
+    </div>
+</div>
